@@ -1,6 +1,7 @@
 import sys 
 import socket 
 import time
+import os
 
 MAX_ITER = 30
 
@@ -35,8 +36,13 @@ def main():
 
         if (ip_not_ok):
             print(f"Après {MAX_ITER} essais, la connection n'a pas pu être établie)")
+            exit(1)
         else:
-            print("Connection ok")
+            print(f"Connection to {ip} ok") 
+
+    os.system(f"/home/marco/Documents/tp_rsf/ad_hoc_startup.sh {bestChannel}")
+    print("Changement de cannal effectué")
+
 
 if __name__ == '__main__' :
     main()

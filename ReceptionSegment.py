@@ -10,8 +10,9 @@ with socket.socket(socket.AF_INET , socket.SOCK_STREAM) as serversocket :
     with open('programme.py', "wb") as f: 
         segment_index = 0 
         while True:
-            data = client_socket.recv(1024) 
+            data = client_socket.recv(10) 
             if not data:
+                print("je sors")
                 break  
 
             f.write(data)  
