@@ -41,3 +41,4 @@ def main():
             print("Une ou plusieurs machines n'ont pas pu être joignable, pas de changement de cannal")
 
     server_socket.close()
+main()
