@@ -11,16 +11,16 @@ with socket.socket(socket.AF_INET , socket.SOCK_STREAM) as serversocket :
         segment_index = 0 
         while True:
             data = client_socket.recv(10) 
+            if data.decode() == "finish":
+                break
             if not data:
-                print("je sors")
-                break  
-
-            f.write(data)  
-            print(f"Reçu segment {segment_index}")
-
-            ack = str(segment_index).encode()
-            client_socket.send(ack)
-            segment_index += 1  
+                print("Perte de connection !")
+            else:   
+                f.write(data)  
+                print(f"Reçu segment {segment_index}")
+                ack = str(segment_index).encode()
+                client_socket.send(ack)
+                segment_index += 1  
 
 print("Fichier reçu ")
 client_socket.close()

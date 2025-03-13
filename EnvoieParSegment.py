@@ -7,7 +7,7 @@ ip = '192.168.1.1'
 port = 5000
 fichier = "file_to_send.txt"  
 taille_seg = 1024  
-sauvegarde_index = "index.txt"  # Fichier pour suivre l'avancement
+sauvegarde_index = "index_envoi.txt"  # Fichier pour suivre l'avancement
 
 def creation_seg():
     segments = []
