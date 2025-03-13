@@ -2,7 +2,7 @@ import socket
 import sys
 
 port = 5000 #on établit le port d'envoi qui sera le même que celui de reception"
-ip = '192.168.1.1' #on établit l'ip de la machine cible"
+ip = '192.168.1.2' #on établit l'ip de la machine cible"
 filename = sys.argv[1]
 
 def send_data():
