@@ -1,6 +1,7 @@
 import os
 import socket
 import time
+import sys
 
 
 def receive_data(server_socket):
@@ -17,6 +18,8 @@ def receive_data(server_socket):
 
 
 def main():
+    my_ip = sys.argv[1]
+
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server_socket.settimeout(30)
@@ -32,7 +35,7 @@ def main():
         reception_not_ok, change_data = receive_data(server_socket)
         if change_data:
             print(f"Changement du cannal actuel pour {best_channel}")
-            os.system(f"/home/marco/Documents/tp_rsf/ad_hoc_startup.sh {best_channel}")
+            os.system(f"/home/marco/Documents/tp_rsf/ad_hoc_startup.sh {best_channel} {my_ip}")
             time.sleep(1)
         else:
             print("Une ou plusieurs machines n'ont pas pu être joignable, pas de changement de cannal")

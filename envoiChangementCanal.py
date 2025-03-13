@@ -45,6 +45,7 @@ def main():
     port = 5001
     receivers_ip = ["192.168.1.1", "192.168.1.3"]
     best_channel = sys.argv[1]
+    my_ip = sys.argv[2]
 
     channel_not_sent = send_to_servers(receivers_ip, port, best_channel)
 
@@ -62,7 +63,7 @@ def main():
         )
         exit(2)
 
-    os.system(f"/home/marco/Documents/tp_rsf/ad_hoc_startup.sh {best_channel}")
+    os.system(f"/home/marco/Documents/tp_rsf/ad_hoc_startup.sh {best_channel} {my_ip}")
     print("Changement de cannal effectué")
     time.sleep(1)
 
