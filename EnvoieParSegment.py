@@ -3,11 +3,11 @@ import time
 import os 
 
 
-ip = '192.168.1.1'  
+ip = '192.168.1.2'  
 port = 5000
-fichier = "file_to_send.txt"  
-taille_seg = 1024  
-sauvegarde_index = "index_envoi.txt"  # Fichier pour suivre l'avancement
+fichier = "reçois.py"  
+taille_seg = 10  
+sauvegarde_index = "index.txt"  # Fichier pour suivre l'avancement
 
 def creation_seg():
     segments = []
@@ -44,14 +44,16 @@ def envoie():
         ack = client.recv(1024) 
         if ack.decode().strip() == str(i): 
             print(f"ACK reçu pour segment {i}")
+            save_index(i + 1)
             i = i + 1 
-            save_index(i)
         else:
             print(f"ACK incorrect, re-envoi du segment {i}")
 
         time.sleep(0.1) 
-
+        
+    client.send(b'finish' ) 
     print("Fichier envoyé")
+    save_index(0)        
     client.close()
 
 envoie()
