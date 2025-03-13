@@ -44,8 +44,8 @@ def envoie():
         ack = client.recv(1024) 
         if ack.decode().strip() == str(i): 
             print(f"ACK reçu pour segment {i}")
-            save_index(i + 1)
             i = i + 1 
+            save_index(i)
         else:
             print(f"ACK incorrect, re-envoi du segment {i}")
 
