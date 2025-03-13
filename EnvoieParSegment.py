@@ -35,22 +35,26 @@ def envoie():
     last_index = get_index()
 
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client.settimeout(30)
     client.connect((ip, port))
 
     i = last_index 
     while i < len(segments) :
         client.send(segments[i]) 
+        try : 
+            ack = client.recv(1024) 
+            if ack.decode().strip() == str(i): 
+                print(f"ACK reçu pour segment {i}")
+                save_index(i + 1)
+                i = i + 1 
+            else:
+                print(f"ACK incorrect, re-envoi du segment {i}")
 
-        ack = client.recv(1024) 
-        if ack.decode().strip() == str(i): 
-            print(f"ACK reçu pour segment {i}")
-            save_index(i + 1)
-            i = i + 1 
-        else:
-            print(f"ACK incorrect, re-envoi du segment {i}")
-
-        time.sleep(0.1) 
-        
+            time.sleep(0.1)
+        except Exception as e :
+            print(e)
+            exit(1)
+            
     client.send(b'finish' ) 
     print("Fichier envoyé")
     save_index(0)        
