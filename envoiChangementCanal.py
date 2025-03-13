@@ -63,7 +63,7 @@ def main():
         )
         exit(2)
 
-    os.system(f"./ad_hoc_startup.sh {best_channel} {my_ip}")
+    os.system(f"./ad-hoc-startup.sh {best_channel} {my_ip}")
     print("Changement de cannal effectué")
     time.sleep(1)
 
