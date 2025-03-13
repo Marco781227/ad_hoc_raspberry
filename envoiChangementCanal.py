@@ -43,7 +43,7 @@ def send_to_servers(receivers_ip, port, data):
 
 def main():
     port = 5001
-    receivers_ip = ["192.168.1.1"]
+    receivers_ip = ["192.168.1.1","192.168.1.3"]
     best_channel = sys.argv[1]
     my_ip = sys.argv[2]
 

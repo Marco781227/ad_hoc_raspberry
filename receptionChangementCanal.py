@@ -35,7 +35,7 @@ def main():
         reception_not_ok, change_data = receive_data(server_socket)
         if change_data:
             print(f"Changement du cannal actuel pour {best_channel}")
-            os.system(f"./ad_hoc_startup.sh {best_channel} {my_ip}")
+            os.system(f"./ad-hoc-startup.sh {best_channel} {my_ip}")
             time.sleep(1)
         else:
             print("Une ou plusieurs machines n'ont pas pu être joignable, pas de changement de cannal")
