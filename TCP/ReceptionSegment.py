@@ -2,7 +2,6 @@ import socket
 import time
 
 sauvegarde_index = "index_reception.txt"  # Fichier pour suivre l'avancement
-MAX_ITER = 30
 
 def get_index():
     try:
@@ -35,19 +34,19 @@ with socket.socket(socket.AF_INET , socket.SOCK_STREAM) as serversocket :
                 #    print("Perte de connection... Tentative de reconnection.")
                 #    nb_iter += 1
                 #    time.sleep(1)
-                elif data.decode().strip() == str(segment_index) :   
+                elif data.decode() == str(-1) : # On reset 
+                    save_index(0)
+                    with open('programme.py', "w") as f: 
+                        pass
+                elif data :   
                     f.write(data)  
                     print(f"Reçu segment {segment_index}")
                     ack = str(segment_index).encode()
                     client_socket.send(ack)
                     segment_index += 1  
                     save_index(segment_index)
-                elif data.decode().strip() == str(-1) :   
-                    save_index(0)
-                    with open('programme.py', "w") as f: 
-                        pass
                 else :
-                    print(f"Reçus segment incorrect")
+                    print(f"Probleme sur la data reçus")
                     client_socket.send(ack)
 
             except Exception as e:
