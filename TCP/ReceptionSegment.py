@@ -26,7 +26,7 @@ with socket.socket(socket.AF_INET , socket.SOCK_STREAM) as serversocket :
     with open('programme.py', "ab") as f: 
         segment_index = get_index()
         nb_iter = 0
-        while True and nb_iter < MAX_ITER:
+        while True :
             try:
                 data = client_socket.recv(10) 
                 if data.decode() == "finish":
@@ -35,16 +35,24 @@ with socket.socket(socket.AF_INET , socket.SOCK_STREAM) as serversocket :
                 #    print("Perte de connection... Tentative de reconnection.")
                 #    nb_iter += 1
                 #    time.sleep(1)
-                elif data:   
+                elif data.decode().strip() == str(segment_index) :   
                     f.write(data)  
                     print(f"Reçu segment {segment_index}")
                     ack = str(segment_index).encode()
                     client_socket.send(ack)
                     segment_index += 1  
                     save_index(segment_index)
+                elif data.decode().strip() == str(-1) :   
+                    save_index(0)
+                    with open('programme.py', "w") as f: 
+                        pass
+                else :
+                    print(f"Reçus segment incorrect")
+                    client_socket.send(ack)
+
             except Exception as e:
                 print(e)
-                exit(1)
+                exit(1)                                          
 
 print("Fichier reçu ")
 save_index(0)

@@ -37,7 +37,7 @@ def envoie():
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.settimeout(30)
     client.connect((ip, port))
-
+    nb_erreur = 0
     i = last_index 
     while i < len(segments) :
         client.send(segments[i]) 
@@ -47,9 +47,14 @@ def envoie():
                 print(f"ACK reçu pour segment {i}")
                 save_index(i + 1)
                 i = i + 1 
+                nb_erreur = 0
+            elif nb_erreur == 10 :
+                client.send(str(-1))
+                save_index(0)
+                print("Reset enclencher")        
             else:
                 print(f"ACK incorrect, re-envoi du segment {i}")
-
+                nb_erreur = nb_erreur + 1 
             time.sleep(0.1)
         except Exception as e :
             print(e)
