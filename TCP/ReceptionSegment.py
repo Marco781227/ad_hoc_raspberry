@@ -24,19 +24,16 @@ with socket.socket(socket.AF_INET , socket.SOCK_STREAM) as serversocket :
 
     with open('programme.py', "ab") as f: 
         segment_index = get_index()
-        nb_iter = 0
         while True :
             try:
                 data = client_socket.recv(10) 
                 if data.decode() == "finish":
                     break
-                #if not data:
-                #    print("Perte de connection... Tentative de reconnection.")
-                #    nb_iter += 1
-                #    time.sleep(1)
-                elif data.decode() == str(-1) : # On reset 
-                    save_index(0)
-                    with open('programme.py', "w") as f: 
+                elif data.decode() == "reset" : # On reset 
+                    print("Erreur de synchronisation, relancement de la communication")
+                    segment_index = 0
+                    save_index(segment_index)
+                    with open('programme.py', "w") as nf: 
                         pass
                 elif data :   
                     f.write(data)  
@@ -45,10 +42,6 @@ with socket.socket(socket.AF_INET , socket.SOCK_STREAM) as serversocket :
                     client_socket.send(ack)
                     segment_index += 1  
                     save_index(segment_index)
-                else :
-                    print(f"Probleme sur la data reçus")
-                    client_socket.send(ack)
-
             except Exception as e:
                 print(e)
                 exit(1)                                          
