@@ -44,13 +44,13 @@ def envoie():
             ack = client.recv(1024) 
             if ack.decode() == str(i): 
                 print(f"ACK reçu pour segment {i}")
-                save_index(i + 1)
                 i = i + 1 
-                nb_erreur = 0
-            else:
+                save_index(i)
+            elif ack :
                 print(f"ACK incorrect, Reset ")
-                client.send(str(-1).encode())
-                save_index(0)
+                client.send(b'reset')
+                i = 0
+                save_index(i)
             time.sleep(0.1)
         except Exception as e :
             print(e)
