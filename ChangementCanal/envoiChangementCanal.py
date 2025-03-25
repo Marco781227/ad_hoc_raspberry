@@ -34,7 +34,7 @@ def send_to_servers(receivers_ip, port, data):
             nb_iter += 1
 
         if ip_not_ok:
-            print(f"Après {MAX_ITER} essais, la connection n'a pas pu être établie)")
+            print(f"Après {MAX_ITER} essais, la connection n'a pas pu être établie")
             return 1
         else:
             print(f"Connection to {ip} ok")

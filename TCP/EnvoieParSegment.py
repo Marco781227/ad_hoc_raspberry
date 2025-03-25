@@ -1,11 +1,12 @@
 import socket
 import time
 import os 
+import sys
 
 
-ip = '192.168.1.2'  
+ip = sys.argv[1] 
 port = 5000
-fichier = "reçois.py"  
+fichier = sys.argv[2]
 taille_seg = 10  
 sauvegarde_index = "index.txt"  # Fichier pour suivre l'avancement
 

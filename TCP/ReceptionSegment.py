@@ -1,7 +1,9 @@
 import socket
 import time
+import sys
 
 sauvegarde_index = "index_reception.txt"  # Fichier pour suivre l'avancement
+file_name = sys.argv[1]
 
 def get_index():
     try:
@@ -11,7 +13,7 @@ def get_index():
         return 0 
 
 def save_index(index):
-    with open(sauvegarde_index, "w") as f:
+    with open(file_name, "w") as f:
         f.write(str(index))
 
 with socket.socket(socket.AF_INET , socket.SOCK_STREAM) as serversocket : 
