@@ -7,7 +7,6 @@ server.listen(1)
 client,addr = server.accept()
 try :
 	data = client.recv(1024)
-	if not data : break 
 	print(f"Received message : {data.decode('utf-8')}")
 	reply = "Bien recu"
 	client.send(reply.encode("utf-8"))

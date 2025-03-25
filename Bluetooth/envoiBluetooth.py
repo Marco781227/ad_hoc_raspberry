@@ -15,7 +15,7 @@ try:
     client_gps_sender.connect((address_gps_sender, 4))
     client_gps_receiver.connect((address_gps_receiver, 4))
     
-    message_receiver = f"Listen for coordinates from: {port}"
+    message_receiver = f"Listen for coordinates from port: {port}"
     message_sender = f"Send coordinates to: {receiver_ip} at port: {port}"
     client_gps_receiver.send(message_receiver.encode())
     client_gps_sender.send(message_sender.encode())
