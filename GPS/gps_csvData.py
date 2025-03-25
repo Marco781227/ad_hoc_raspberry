@@ -1,9 +1,9 @@
 import socket
 import json
 import time
-
+import sys
 HOST = "0.0.0.0" #ecoute partout
-PORT = 5000
+PORT = int (sys.argv[1])
 FILENAME = "gps_data.csv"
 	
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #on établit la connection en IPv4 (INET) et via le protocole TCP (STREAM)
