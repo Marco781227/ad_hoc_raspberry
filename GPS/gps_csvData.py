@@ -23,12 +23,13 @@ conn, addr = server.accept()
 while(True):
 	print(f"connexionrecue de {addr}")
 	
-	data = conn.recv(1024)
+	data = conn.recv(46) #Taille d'une trame GPS
 	if not data:
 		print(f"aucune data recue")
 		conn.close()
 		break
 		
+	print(len(data))
 	timestamp, latitude, longitude = json.loads(data.decode())
 	with open (FILENAME, "a") as file:
 		file.write(f"{timestamp},{latitude},{longitude}\n")
