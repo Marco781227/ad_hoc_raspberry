@@ -1,5 +1,6 @@
 import socket 
-import os 
+import os
+import sys 
 server = socket.socket(socket.AF_BLUETOOTH , socket.SOCK_STREAM , socket.BTPROTO_RFCOMM )
 server.bind((sys.argv[1],4))
 server.listen(1)
@@ -10,12 +11,8 @@ try :
 		if not data : break 
 		print(f"Received message : {data.decode('utf-8')}")
 		reply = "Bien recu"
-		client.send(message.encode("utf-8"))
+		client.send(reply.encode("utf-8"))
 
-		os.system("python3 blabla.py")
-		client.send(("Fichier exécutable ").encode("utf-8")) 
 except Exception as e :
-	print(e)
-    exit(1)
+	pass
 client.close()
-server.close()
