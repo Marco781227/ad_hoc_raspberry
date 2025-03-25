@@ -24,8 +24,8 @@ import json
 
 gpsd.connect()
 
-port = 5000 #on établit le port d'envoi qui sera le même que celui de reception"
-ip = '127.0.0.1' #on établit l'ip de la machine cible"
+port = int(sys.argv[1]) #on établit le port d'envoi qui sera le même que celui de reception"
+ip = sys.argv[2] #on établit l'ip de la machine cible"
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #on établit la connection en IPv4 (INET) et via le protocole TCP (STREAM)
 print("test1")
