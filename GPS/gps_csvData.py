@@ -1,5 +1,6 @@
 import socket
 import json
+import time
 
 HOST = "0.0.0.0" #ecoute partout
 PORT = 5000
@@ -16,7 +17,7 @@ print(f"server en attente sur le port {PORT}.")
 
 
 with open(FILENAME, "w") as file:
-	file.write("timestamp, latitude, longitude\n")
+	file.write("timestamp,latitude,longitude\n")
 conn, addr = server.accept()
 
 while(True):
@@ -30,8 +31,9 @@ while(True):
 		
 	timestamp, latitude, longitude = json.loads(data.decode())
 	with open (FILENAME, "a") as file:
-		file.write(f"{timestamp}, {latitude}, {longitude}\n")
-	print(f"data enregistrees : {timestamp}, {latitude}, {longitude}")
+		file.write(f"{timestamp},{latitude},{longitude}\n")
+		time.sleep(1)
+	print(f"data enregistrees : {timestamp},{latitude},{longitude}")
 	
 		
 		
