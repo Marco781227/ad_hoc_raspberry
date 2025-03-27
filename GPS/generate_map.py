@@ -1,5 +1,5 @@
-import pandas as pd
-import folium
+import pandas as pd # Permet de lire les data dans csv
+import folium # Permet de créer une carte interractive
 
 #charger les data
 df = pd.read_csv("gps_data.csv")
@@ -7,7 +7,7 @@ df = pd.read_csv("gps_data.csv")
 #Prendre la dernière position + centrer carte
 last_point = df.iloc[-1]
 map_center = [last_point['latitude'], last_point['longitude']]
-carte = folium.Map(location=map_center, zoom_start=10)
+carte = folium.Map(location=map_center, zoom_start=15)
 
 #Ajout des points sur la map
 for index, row in df.iterrows():
