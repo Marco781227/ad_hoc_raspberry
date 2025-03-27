@@ -17,7 +17,7 @@ while [ $nbRepetitions -ne 15 ]
 do
 	if !(eval "$commEnCours")
 	then
-		python3 "$chemin_complet" "$bestChannel" "$ip" >> "$LOG_FILE" 2>&1
+		python3 "$chemin_complet" "$bestChannel" "$ip" "$path" >> "$LOG_FILE" 2>&1
 		echo "hello"
 		exit 0
 	fi

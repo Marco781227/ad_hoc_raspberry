@@ -19,6 +19,7 @@ def receive_data(server_socket,message):
 
 def main():
     my_ip = sys.argv[1]
+    file_path = sys.argv[2] + "/ad_hoc_startup.sh"
 
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -35,7 +36,7 @@ def main():
         reception_not_ok, change_data = receive_data(server_socket, b"Confirmation recue")
         if change_data:
             print(f"Changement du cannal actuel pour {best_channel}")
-            os.system(f"../ad-hoc-startup.sh {best_channel} {my_ip}")
+            os.system(f"{file_path} {best_channel} {my_ip}")
             time.sleep(1)
         else:
             print("Une ou plusieurs machines n'ont pas pu être joignable, pas de changement de cannal")
