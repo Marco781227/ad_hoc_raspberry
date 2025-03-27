@@ -16,9 +16,12 @@ i=0
 
 
 while(True):
-    packet = gpsd.get_current()
-    timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-    latitude, longitude = packet.position()
+    try:
+        packet = gpsd.get_current()
+        timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
+        latitude, longitude = packet.position()
+    except Exception as e:
+        print(f"aucune reception des donnees")
 
     coordonnees = json.dumps([timestamp, latitude, longitude])
     time.sleep(1)
