@@ -1,6 +1,10 @@
-if [[ $# -ne 1 ]]
+if [[ $# -ne 2 ]]
 then
-	echo "Usage : ./recevoirChangementCanal.sh <adresse ip>"
+	echo "Usage : ./recevoirChangementCanal.sh <chemin> <adresse ip>"
 fi
 
-python3 ~/Desktop/projet/ad_hoc_raspberry/ChangementCanal/receptionChangementCanal.py $1 >> /home/m1info20/receptionChangementCanal.log 2>&1
+chemin_complet="$1/ChangementCanal/receptionChangementCanal.py"
+ip=$2
+LOG_FILE="$HOME/receptionCanal.log"
+
+python3 "$chemin_complet" $ip >> "$LOG_FILE" 2>&1 

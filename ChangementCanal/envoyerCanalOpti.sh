@@ -11,13 +11,14 @@ commEnCours="sudo lsof -i -P -n | grep -q $ip"
 nbRepetitions=0
 LOG_FILE="$HOME/changementCanal.log"
 
+ls -l "$chemin_complet"
 echo $chemin_complet
 while [ $nbRepetitions -ne 15 ] 
 do
 	if !(eval "$commEnCours")
 	then
-		echo "hello"
 		python3 "$chemin_complet" "$bestChannel" "$ip" >> "$LOG_FILE" 2>&1
+		echo "hello"
 		exit 0
 	fi
 	sleep 1
