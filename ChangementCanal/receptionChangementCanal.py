@@ -9,7 +9,6 @@ def receive_data(server_socket,message):
         (client_socket, _) = server_socket.accept()
         data = client_socket.recv(1024)
         client_socket.send(message)
-        print("Nouveau channel bien reçu")
         client_socket.close()
         return 0, data.decode()
     except Exception as e:

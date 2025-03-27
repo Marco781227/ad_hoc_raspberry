@@ -1,8 +1,8 @@
 import socket
 import sys
 
-address_gps_receiver = "B8:27:EB:85:58:B8"
-address_gps_sender = "B8:27:EB:C9:02:3B"
+address_gps_receiver = "B8:27:EB:C9:02:3B"
+address_gps_sender =  "B8:27:EB:85:58:B8"
 
 client_gps_sender = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM) #on établit la communicatio avec le protocole bluetooth (AF_BLUETOOTH) via le protocole TCP (SOCK_STREAM) et le protocole bluetooth RFCOMM (BTPROTO_RFCOMM)
 client_gps_receiver = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM) #on établit la communicatio avec le protocole bluetooth (AF_BLUETOOTH) via le protocole TCP (SOCK_STREAM) et le protocole bluetooth RFCOMM (BTPROTO_RFCOMM)

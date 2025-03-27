@@ -7,11 +7,8 @@ PORT = int (sys.argv[1])
 FILENAME = "gps_data.csv"
 	
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #on établit la connection en IPv4 (INET) et via le protocole TCP (STREAM)
-print("test1")
 server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-print("test2")
 server.bind((HOST, PORT))
-print("test3")
 server.listen(5)
 print(f"server en attente sur le port {PORT}.")
 

@@ -15,7 +15,7 @@ def send_data(ip, port, data):
             s.send(data.encode())
             s.shutdown(socket.SHUT_WR)  # fermeture du socket en ecriture
             response = s.recv(1024)
-            print(response)
+            print(response.decode())
             time.sleep(1)
             s.close()
             return 0
