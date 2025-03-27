@@ -21,13 +21,13 @@ commEnCours="sudo lsof -i -P -n | grep -q $ip"
 nbRepetitions=0
 LOG_FILE="$HOME/changementCanal.log"
 
-#if !(eval "$commEnCours")
-#then
-#	sleep 1
-#	echo "$(date "+%Y-%m-%d %H:%M:%S") Début de l'execution du changement de canal" >> "$LOG_FILE"
-#	python3 "$chemin_complet" "$bestChannel" "$ip" "$path" >> "$LOG_FILE" 2>&1
-#	exit 0
-#fi
-#
-#echo "ok"
-#exit 1
+if !(eval "$commEnCours")
+then
+	sleep 1
+	echo "$(date "+%Y-%m-%d %H:%M:%S") Début de l'execution du changement de canal" >> "$LOG_FILE"
+	python3 "$chemin_complet" "$bestChannel" "$ip" "$path" >> "$LOG_FILE" 2>&1
+	exit 0
+fi
+
+echo "ok"
+exit 1
