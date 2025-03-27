@@ -17,6 +17,7 @@ while [ $nbRepetitions -ne 15 ]
 do
 	if !(eval "$commEnCours")
 	then
+		echo "$(date+%Y-%m-%d %H:%M:%S") Début de l'execution du changement de canal" >> "$LOG_FILE"
 		python3 "$chemin_complet" "$bestChannel" "$ip" "$path" >> "$LOG_FILE" 2>&1
 		echo "hello"
 		exit 0
