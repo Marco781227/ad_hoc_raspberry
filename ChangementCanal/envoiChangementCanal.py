@@ -4,7 +4,7 @@ import sys
 import time
 
 MAX_ITER = 10
-CONFIRMATION = "yes"
+CONFIRMATION = "CHANGEMENT_OK"
 
 
 def send_data(ip, port, data):
@@ -48,6 +48,7 @@ def main():
     my_ip = sys.argv[2]
     file_path = sys.argv[3] + "/ad-hoc-startup.sh"
 
+    print(f"Tentative de connection au canal {best_channel}")
     channel_not_sent = send_to_servers(receivers_ip, port, best_channel)
 
     if channel_not_sent:

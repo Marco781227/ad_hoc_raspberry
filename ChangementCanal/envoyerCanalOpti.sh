@@ -11,8 +11,6 @@ commEnCours="sudo lsof -i -P -n | grep -q $ip"
 nbRepetitions=0
 LOG_FILE="$HOME/changementCanal.log"
 
-ls -l "$chemin_complet"
-echo $chemin_complet
 while [ $nbRepetitions -ne 15 ] 
 do
 	if !(eval "$commEnCours")

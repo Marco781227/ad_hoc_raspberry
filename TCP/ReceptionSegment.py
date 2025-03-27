@@ -13,7 +13,7 @@ def get_index(): #Recuperation de l'index
         return 0 
 
 def save_index(index):
-    with open(file_name, "w") as f:
+    with open(sauvegarde_index, "w") as f:
         f.write(str(index))
 
 with socket.socket(socket.AF_INET , socket.SOCK_STREAM) as serversocket :

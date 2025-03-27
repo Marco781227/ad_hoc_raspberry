@@ -34,7 +34,7 @@ def main():
         exit(1)
     else:
         reception_not_ok, change_data = receive_data(server_socket, b"Confirmation recue")
-        if change_data:
+        if change_data == "CHANGEMENT_OK":
             print(f"Changement du cannal actuel pour {best_channel}")
             os.system(f"{file_path} {best_channel} {my_ip}")
             time.sleep(1)
