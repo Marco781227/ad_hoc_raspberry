@@ -1,5 +1,5 @@
-import gpsd
-import time
+import gpsd #Récupérer les données du GPS.
+import time 
 import socket
 import sys
 import json
@@ -17,19 +17,18 @@ i=0
 
 while(True):
     try:
-        packet = gpsd.get_current()
-        timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-        latitude, longitude = packet.position()
+        packet = gpsd.get_current()                         # Récupère le paquet de données GPS actuel
+        timestamp = time.strftime("%Y-%m-%d %H:%M:%S")        # Formate l'heure actuelle en chaîne de caractères
+        latitude, longitude = packet.position()             # Extrait la latitude et la longitude du paquet
     except Exception as e:
-        print(f"aucune reception des donnees")
+        print(f"aucunes donnees gps captées")
 
-    coordonnees = json.dumps([timestamp, latitude, longitude])
-    time.sleep(1)
-    client.send(coordonnees.encode())
-    print(f"data envoyée : {timestamp}, {latitude}, {longitude}")
-    
-    time.sleep(1)
-else :
+    coordonnees = json.dumps([timestamp, latitude, longitude])  # Convertit les données en JSON
+    time.sleep(1)                                       # Pause d'une seconde
+    client.send(coordonnees.encode())                   # Envoie les données (après encodage en bytes) via le socket
+    print(f"data envoyée : {timestamp}, {latitude}, {longitude}")  # Affiche les données envoyées
+    time.sleep(1)                                       # Pause d'une seconde avant de recommencer
+else:
     print(f"aucune donnée GPS reçue")
     
 
