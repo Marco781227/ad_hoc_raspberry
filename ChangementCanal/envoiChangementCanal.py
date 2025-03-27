@@ -27,7 +27,7 @@ def send_data(ip, port, data):
 def send_to_servers(receivers_ip, port, data):
     for ip in receivers_ip:
         ip_not_ok = send_data(ip, port, data)
-        nb_iter = 0
+        nb_iter = 1
         while ip_not_ok and nb_iter < MAX_ITER:
             time.sleep(1)
             ip_not_ok = send_data(ip, port, data)

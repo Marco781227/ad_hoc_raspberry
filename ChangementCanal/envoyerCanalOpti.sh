@@ -1,6 +1,6 @@
 if [[ $# -ne 2 ]]
 then
-	echo "Usage : ./envoyerCanalOpti.sh <adresse ip>"
+	echo "Usage : ./envoyerCanalOpti.sh <chemin_vers_executable> <adresse ip>"
 	exit 1
 fi
 
@@ -17,17 +17,18 @@ done
 path="$1"
 ip=$2
 chemin_complet="$path/ChangementCanal/envoiChangementCanal.py"
-commEnCours="sudo lsof -i -P -n | grep -q $ip"
-nbRepetitions=0
 LOG_FILE="$HOME/changementCanal.log"
 
-if !(eval "$commEnCours")
+#Si il n'y a pas de communications en cours on peut changer le canal
+if ! sudo lsof -i -P -n | grep -q $ip;
 then
 	sleep 1
 	echo "$(date "+%Y-%m-%d %H:%M:%S") Début de l'execution du changement de canal" >> "$LOG_FILE"
 	python3 "$chemin_complet" "$bestChannel" "$ip" "$path" >> "$LOG_FILE" 2>&1
 	exit 0
+
+else
+	echo "$(date "+%Y-%m-%d %H:%M:%S") Communication déjà en cours annulation du changement de canal" >> "$LOG_FILE"
 fi
 
-echo "ok"
 exit 1

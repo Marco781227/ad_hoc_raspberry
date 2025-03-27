@@ -22,7 +22,7 @@ def main():
 
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    server_socket.settimeout(30)
+    server_socket.settimeout(20)
     server_socket.bind(("", 5001))
     server_socket.listen(1)
 
