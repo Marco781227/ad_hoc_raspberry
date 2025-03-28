@@ -20,8 +20,8 @@ chemin_complet="$path/ChangementCanal/envoiChangementCanal.py"
 LOG_FILE="$HOME/changementCanal.log"
 
 #Si il n'y a pas de communications en cours on peut changer le canal
-if ! sudo lsof -i -P -n | grep -q $ip;
-then
+commEnCours=$(sudo lsof -i -P -n | grep -q $ip)
+if [[ $? -ne 0 ]]; then
 	sleep 1
 	echo "$(date "+%Y-%m-%d %H:%M:%S") Début de l'execution du changement de canal" >> "$LOG_FILE"
 	python3 "$chemin_complet" "$bestChannel" "$ip" "$path" >> "$LOG_FILE" 2>&1
