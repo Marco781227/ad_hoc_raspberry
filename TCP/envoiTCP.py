@@ -1,9 +1,9 @@
 import socket
 import sys
 
-port = 5000 #on établit le port d'envoi qui sera le même que celui de reception"
-ip = '192.168.1.2' #on établit l'ip de la machine cible"
-filename = sys.argv[1]
+port = 6000 #on établit le port d'envoi qui sera le même que celui de reception"
+ip = sys.argv[1]#on établit l'ip de la machine cible"
+filename = sys.argv[2]
 
 def send_data():
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #on établit la connection en IPv4 (INET) et via le protocole TCP (STREAM)
