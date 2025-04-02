@@ -4,7 +4,7 @@ import sys
 # Instanciation du socket Bluetooth (AF_BLUETOOTH), avec comme protocole de transport TCP (SOCK_STREAM) et comme protocole de liaison de données RFCOMM (BTPROTO_RFCOMM)
 server = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
 
-# Le socket écoute l'adresse MAC sur le port 4
+# Le socket écoute sur l'adresse MAC sur le port 4
 server.bind((sys.argv[1], 4))
 server.listen(1)
 client, addr = server.accept()
